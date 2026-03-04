@@ -62,6 +62,10 @@ Saved to llms.txt
     └── 2.1.63_kr.md           # Korean translations by version
 ```
 
+## Customizing Your Spinner
+
+Want to use your own spinner words? See the **[Customization Guide](CUSTOMIZE.md)** to learn how to configure `spinnerVerbs` in `settings.json`.
+
 ## Sample Words
 
 Some highlights from the 192 spinner words found in v2.1.63:
