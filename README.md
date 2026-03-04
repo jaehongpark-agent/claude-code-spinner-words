@@ -1,8 +1,8 @@
-# Claude Code Spinner Words
+# Claude Code Spinner Verbs
 
 Ever wondered what those quirky loading messages in [Claude Code](https://docs.anthropic.com/en/docs/claude-code) are?
 
-This tool extracts all spinner words from the Claude Code CLI binary and saves them as versioned markdown files for history tracking.
+This tool extracts all spinner verbs from the Claude Code CLI binary and saves them as versioned markdown files for history tracking.
 
 > [Korean (한국어)](README_KR.md)
 
@@ -10,15 +10,15 @@ This tool extracts all spinner words from the Claude Code CLI binary and saves t
 
 1. Locates the Claude Code binary on your system
 2. Runs `strings` to dump printable text from the binary
-3. Uses seed-based bootstrapping to find the spinner word array — known rare words (e.g. *Flibbertigibbeting*, *Razzmatazzing*) pinpoint the right location
+3. Uses seed-based bootstrapping to find the spinner verb array — known rare verbs (e.g. *Flibbertigibbeting*, *Razzmatazzing*) pinpoint the right location
 4. Parses out all gerund-form words and saves them to `words/<version>.md`
 5. Shows a diff against the previous extraction, so you can spot additions and removals across versions
 
 ## Usage
 
 ```bash
-# Extract spinner words only
-python3 extract_spinner_words.py
+# Extract spinner verbs only
+python3 extract_spinner_verbs.py
 
 # Extract + generate llms.txt (for AI agents)
 python3 build.py
@@ -32,7 +32,7 @@ Version: 2.1.63
 Seeds:   192 words (12 built-in)
 Running strings...
 
-Extracted 192 spinner words:
+Extracted 192 spinner verbs:
 
     1. Accomplishing
     2. Actioning
@@ -54,7 +54,7 @@ Saved to llms.txt
 
 ```
 .
-├── extract_spinner_words.py   # Extractor (standalone)
+├── extract_spinner_verbs.py   # Extractor (standalone)
 ├── build.py                   # Build pipeline (extract + llms.txt)
 ├── llms.txt                   # Auto-generated context for AI agents
 └── words/
@@ -64,11 +64,11 @@ Saved to llms.txt
 
 ## Customizing Your Spinner
 
-Want to use your own spinner words? See the **[Customization Guide](CUSTOMIZE.md)** to learn how to configure `spinnerVerbs` in `settings.json`.
+Want to use your own spinner verbs? See the **[Customization Guide](CUSTOMIZE.md)** to learn how to configure `spinnerVerbs` in `settings.json`.
 
 ## Sample Words
 
-Some highlights from the 192 spinner words found in v2.1.63:
+Some highlights from the 192 spinner verbs found in v2.1.63:
 
 | | | | |
 |---|---|---|---|

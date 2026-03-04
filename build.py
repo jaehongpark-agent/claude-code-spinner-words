@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build pipeline: extract spinner words and generate llms.txt."""
+"""Build pipeline: extract spinner verbs and generate llms.txt."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-from extract_spinner_words import WORDS_DIR, main as extract
+from extract_spinner_verbs import WORDS_DIR, main as extract
 
 ROOT_DIR = Path(__file__).parent
 
@@ -20,17 +20,17 @@ def generate_llms_txt(version: str, words: list[str]):
             .format(version=version, content=kr_path.read_text().strip())
         )
 
-    content = f"""# Claude Code Spinner Words
+    content = f"""# Claude Code Spinner Verbs
 
-> Extracted spinner (loading) words from the Claude Code CLI binary, with Korean translations.
+> Extracted spinner (loading) verbs from the Claude Code CLI binary, with Korean translations.
 
 ## Overview
 
-Claude Code displays playful gerund-form words (e.g. "Cogitating", "Flibbertigibbeting", "Lollygagging") in its spinner while processing. This project extracts all of them from the binary and tracks changes across versions.
+Claude Code displays playful gerund-form verbs (e.g. "Cogitating", "Flibbertigibbeting", "Lollygagging") in its spinner while processing. This project extracts all of them from the binary and tracks changes across versions.
 
 ## Repository Structure
 
-- `extract_spinner_words.py` — Extractor: finds and parses spinner words from the binary
+- `extract_spinner_verbs.py` — Extractor: finds and parses spinner verbs from the binary
 - `build.py` — Build pipeline: extract + generate llms.txt
 - `words/<version>.md` — English word list, one word per line
 - `words/<version>_kr.md` — Korean translation, one `English: 한국어` pair per line
@@ -54,7 +54,7 @@ Claude Code displays playful gerund-form words (e.g. "Cogitating", "Flibbertigib
 
 ```bash
 # Extract only
-python3 extract_spinner_words.py
+python3 extract_spinner_verbs.py
 
 # Extract + generate llms.txt
 python3 build.py
@@ -80,7 +80,7 @@ Actualizing: 실현하는 중
 
 ## Source
 
-https://github.com/jaehongpark-agent/claude-code-spinner-words
+https://github.com/jaehongpark-agent/claude-code-spinner-verbs
 """
     path = ROOT_DIR / "llms.txt"
     path.write_text(content)

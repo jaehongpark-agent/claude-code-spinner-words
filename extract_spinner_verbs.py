@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Extract spinner words from the Claude Code CLI binary.
+"""Extract spinner verbs from the Claude Code CLI binary.
 
-Uses a seed-based bootstrapping strategy: known rare spinner words locate
-the array inside the binary, then all words are parsed out. Results are
+Uses a seed-based bootstrapping strategy: known rare spinner verbs locate
+the array inside the binary, then all verbs are parsed out. Results are
 saved as versioned markdown files for history tracking.
 """
 
@@ -116,7 +116,7 @@ def find_spinner_line(lines: list[str], seeds: list[str]) -> str | None:
 
 def extract_words(line: str) -> list[str]:
     raw_words = re.findall(r'"([A-Z][^"]*)"', line)
-    spinner_words = []
+    spinner_verbs = []
     seen = set()
     for word in raw_words:
         decoded = re.sub(
@@ -126,9 +126,9 @@ def extract_words(line: str) -> list[str]:
         )
         if GERUND_RE.match(decoded) and decoded not in seen:
             seen.add(decoded)
-            spinner_words.append(decoded)
-    spinner_words.sort()
-    return spinner_words
+            spinner_verbs.append(decoded)
+    spinner_verbs.sort()
+    return spinner_verbs
 
 
 def diff_words(old: list[str], new: list[str]) -> tuple[list[str], list[str]]:
@@ -147,7 +147,7 @@ def save_md(version: str, words: list[str]):
 # --- Main --------------------------------------------------------------------
 
 def main() -> tuple[str, list[str]]:
-    """Extract spinner words and return (version, words)."""
+    """Extract spinner verbs and return (version, words)."""
     binary = find_binary()
     version = get_version(binary)
     print(f"Binary:  {binary}")
@@ -168,7 +168,7 @@ def main() -> tuple[str, list[str]]:
         sys.exit("Error: Could not locate the spinner array in the binary.")
 
     words = extract_words(spinner_line)
-    print(f"\nExtracted {len(words)} spinner words:\n")
+    print(f"\nExtracted {len(words)} spinner verbs:\n")
     for i, w in enumerate(words, 1):
         print(f"  {i:3d}. {w}")
 

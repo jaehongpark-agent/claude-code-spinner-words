@@ -1,6 +1,6 @@
-# Customizing Claude Code Spinner Words
+# Customizing Claude Code Spinner Verbs
 
-You can replace or extend Claude Code's spinner words with your own using the `spinnerVerbs` setting in `settings.json`.
+You can replace or extend Claude Code's spinner verbs with your own using the `spinnerVerbs` setting in `settings.json`.
 
 > [Korean (한국어)](CUSTOMIZE_KR.md)
 
@@ -35,7 +35,7 @@ Edit `~/.claude/settings.json` and add the `spinnerVerbs` field:
 
 | Mode | Description |
 |------|-------------|
-| `replace` | Replaces all default spinner words with your list |
+| `replace` | Replaces all default spinner verbs with your list |
 | `append` | Keeps the defaults and adds your words on top |
 
 ## Verb Format
@@ -105,7 +105,7 @@ You can use any combination:
 
 ## Using This Project's Word Lists
 
-This repository contains all 192 spinner words extracted from Claude Code, with Korean translations.
+This repository contains all 192 spinner verbs extracted from Claude Code, with Korean translations.
 
 - **English**: [`words/2.1.63.md`](words/2.1.63.md)
 - **Korean translations**: [`words/2.1.63_kr.md`](words/2.1.63_kr.md)
