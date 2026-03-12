@@ -48,6 +48,14 @@ jobs:
           npm install @anthropic-ai/claude-code@${{ steps.version.outputs.target }}
           python3 build.py --version "${{ steps.version.outputs.target }}"
 
+      - name: Generate Korean translations
+        if: steps.version.outputs.exists == 'false'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          npx @anthropic-ai/claude-code --version
+          python3 generate_kr.py "${{ steps.version.outputs.target }}"
+
       - name: Commit and push
         if: steps.version.outputs.exists == 'false'
         run: |

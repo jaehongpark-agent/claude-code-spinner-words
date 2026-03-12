@@ -7,23 +7,12 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
+          node-version: '20'
 
-      - name: Test Anthropic API
+      - name: Test claude -p
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          pip install anthropic
-          python3 << 'PYEOF'
-          import anthropic
-          client = anthropic.Anthropic()
-          msg = client.messages.create(
-              model="claude-sonnet-4-20250514",
-              max_tokens=64,
-              messages=[{"role": "user", "content": "Say hello in Korean, one sentence only."}],
-          )
-          print(msg.content[0].text)
-          print("API test passed")
-          PYEOF
+          npx @anthropic-ai/claude-code -p "Say hello in Korean, one sentence only."
