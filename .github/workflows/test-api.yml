@@ -16,14 +16,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           pip install anthropic
-          python3 -c "
-import anthropic, os
-client = anthropic.Anthropic()
-msg = client.messages.create(
-    model='claude-sonnet-4-20250514',
-    max_tokens=64,
-    messages=[{'role': 'user', 'content': 'Say hello in Korean, one sentence only.'}],
-)
-print(msg.content[0].text)
-print('API test passed')
-"
+          python3 << 'PYEOF'
+          import anthropic
+          client = anthropic.Anthropic()
+          msg = client.messages.create(
+              model="claude-sonnet-4-20250514",
+              max_tokens=64,
+              messages=[{"role": "user", "content": "Say hello in Korean, one sentence only."}],
+          )
+          print(msg.content[0].text)
+          print("API test passed")
+          PYEOF
