@@ -48,14 +48,12 @@ jobs:
           npm install @anthropic-ai/claude-code@${{ steps.version.outputs.target }}
           python3 build.py --version "${{ steps.version.outputs.target }}"
 
-      - name: Setup Claude auth
-        if: steps.version.outputs.exists == 'false'
-        run: |
-          echo "${{ secrets.CLAUDE_SETUP_TOKEN }}" | npx @anthropic-ai/claude-code setup-token
-
       - name: Generate Korean translations
         if: steps.version.outputs.exists == 'false'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_SETUP_TOKEN }}
         run: |
+          npm install -g @anthropic-ai/claude-code
           python3 generate_kr.py "${{ steps.version.outputs.target }}"
 
       - name: Commit and push

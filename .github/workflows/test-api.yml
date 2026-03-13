@@ -14,8 +14,7 @@ jobs:
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: Setup Claude auth
-        run: echo "${{ secrets.CLAUDE_SETUP_TOKEN }}" | claude setup-token
-
       - name: Test claude -p
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_SETUP_TOKEN }}
         run: claude -p "Say hello in Korean, one sentence only."
