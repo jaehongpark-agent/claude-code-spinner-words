@@ -11,8 +11,10 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Setup Claude auth
+        run: |
+          echo "${{ secrets.CLAUDE_SETUP_TOKEN }}" | npx @anthropic-ai/claude-code setup-token
+
       - name: Test claude -p
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           npx @anthropic-ai/claude-code -p "Say hello in Korean, one sentence only."
