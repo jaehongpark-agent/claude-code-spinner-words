@@ -11,10 +11,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
       - name: Setup Claude auth
-        run: |
-          echo "${{ secrets.CLAUDE_SETUP_TOKEN }}" | npx @anthropic-ai/claude-code setup-token
+        run: echo "${{ secrets.CLAUDE_SETUP_TOKEN }}" | claude setup-token
 
       - name: Test claude -p
-        run: |
-          npx @anthropic-ai/claude-code -p "Say hello in Korean, one sentence only."
+        run: claude -p "Say hello in Korean, one sentence only."
